@@ -100,8 +100,7 @@ public class Principal {
     private void buscarLibro() {
         DatosLibros datos = getDatosLibro();
         if (datos != null) {
-            boolean yaExiste = datosLibros.stream()
-                    .anyMatch(l -> l.titulo().equalsIgnoreCase(datos.titulo()));
+            boolean yaExiste = this.repositorio.findByTituloIgnoreCase(datos.titulo()).isPresent();
 
             if (yaExiste) {
                 System.out.println("No se puede registrar un libro más de una vez.");
